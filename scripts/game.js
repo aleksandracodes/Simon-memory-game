@@ -5,6 +5,7 @@ let game = {
     turnNumber: 0,
     choices: ['button1', 'button2', 'button3', 'button4'],
     turnInProgress: false,
+    lastButton: '',
 }
 
 function newGame() {
