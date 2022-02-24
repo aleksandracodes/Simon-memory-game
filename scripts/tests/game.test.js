@@ -2,8 +2,7 @@
  * @jest-environment jsdom
  */
 
- const { test } = require('picomatch');
- const { describe } = require('yargs');
+ const { game } = require('../game');
  
  beforeAll(() => {
      let fs = require('fs');
@@ -15,6 +14,6 @@
  
  describe('game object contains correct keys', () => {
      test('score key exists', () => {
-         expects('score' in game).toBe(true);
+         expect('score' in game).toBe(true);
      });
  });
