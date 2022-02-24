@@ -1,0 +1,28 @@
+{
+  "name": "simon-memory-game",
+  "version": "1.0.0",
+  "description": "Simon Game",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aleksandracodes/Simon-memory-game.git"
+  },
+  "keywords": [
+    "simon",
+    "game",
+    "memory",
+    "game"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aleksandracodes/Simon-memory-game/issues"
+  },
+  "homepage": "https://github.com/aleksandracodes/Simon-memory-game#readme",
+  "devDependencies": {
+    "jest": "^27.5.1"
+  }
+}
