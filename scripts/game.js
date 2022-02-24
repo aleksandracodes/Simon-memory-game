@@ -33,4 +33,16 @@ function lightsOn(circ) {
 }
 
 
-module.exports = { game, newGame, showScore, addTurn, lightsOn };
+function showTurns() {
+    game.turnNumber = 0;
+    let turns = setInterval(() => {
+        lightsOn(game.currentGame[game.turnNumber]);
+        game.turnNumber++;
+        if (game.turnNumber >= game.currentGame.length) {
+            clearInterval(turns);
+        }
+    }, 800);
+}
+
+
+module.exports = { game, newGame, showScore, addTurn, lightsOn, showTurns };
