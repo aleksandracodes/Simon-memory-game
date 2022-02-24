@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-const { game } = require('../game');
+const { game, newGame } = require('../game');
  
  beforeAll(() => {
      let fs = require('fs');
@@ -27,5 +27,20 @@ const { game } = require('../game');
     });
     test("choices contain correct ids", () => {
         expect(game.choices).toEqual(['button1', 'button2', 'button3', 'button4']);
+    });
+ });
+
+ describe('newGame works correctly', () => {
+    //  we want to set up the game state with some fake values to see
+    // if the newGame function resets them
+     beforeAll(() => {
+         game.score = 42;
+         newGame();
+     });
+     test('should clear the playerMoves array', () => {
+         expect(game.playerMoves).toEqual([]);
+     })
+     test('should clear currentGame array', () => {
+        expect(game.currentGame).toEqual([]);
     });
  });
