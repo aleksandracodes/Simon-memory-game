@@ -108,4 +108,9 @@ jest.spyOn(window, "alert").mockImplementation(() => { });
         playerTurn();
         expect(window.alert).toBeCalledWith('Wrong move!');
     })
+    test("should turn the turnInProgress to 'true'", () => {
+        showTurns();
+        expect(game.turnInProgress).toBe(true);
+    })
+
  });
