@@ -2,9 +2,8 @@
  * @jest-environment jsdom
  */
 
-// const { expect } = require('@jest/globals');
-// const { test } = require('picomatch');
-const { game, newGame } = require('../game');
+const { expect } = require('@jest/globals');
+const { game, newGame, showScore } = require('../game');
  
  beforeAll(() => {
      let fs = require('fs');
@@ -39,6 +38,7 @@ const { game, newGame } = require('../game');
          game.score = 42;
          game.playerMoves = ['button1', 'button2'];
          game.currentGame = ['button1', 'button2'];
+         document.getElementById('score').innerText = '17';
          newGame();
      });
      test('should set game score to zero', () => {
@@ -49,5 +49,8 @@ const { game, newGame } = require('../game');
      })
      test('should clear currentGame array', () => {
         expect(game.currentGame.length).toBe(0);
+    });
+    test('should display 0 for the element with id of score', () => {
+        expect(document.getElementById('score').innerText).toEqual(0);
     });
  });
