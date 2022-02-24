@@ -29,13 +29,15 @@ jest.spyOn(window, "alert").mockImplementation(() => { });
     test('choices key exists', () => {
         expect('choices' in game).toBe(true);
     });
-    test("choices contain correct ids", () => {
+    test('choices contain correct ids', () => {
         expect(game.choices).toEqual(['button1', 'button2', 'button3', 'button4']);
     });
-    test("turnNumber key exists", () => {
+    test('turnNumber key exists', () => {
         expect('turnNumber' in game).toBe(true);
     });
+
  });
+
 
  describe('newGame works correctly', () => {
     //  we want to set up the game state with some fake values to see
@@ -112,5 +114,10 @@ jest.spyOn(window, "alert").mockImplementation(() => { });
         showTurns();
         expect(game.turnInProgress).toBe(true);
     })
-
+    test('clicking during computer sequence should fail', () => {
+        showTurns();
+        game.lastButton = '';
+        document.getElementById('button2').click();
+        expect(game.lastButton).toEqual('');
+    });
  });
