@@ -28,30 +28,41 @@ const { game, newGame, showScore, addTurn, lightsOn, showTurns } = require('../g
     test("choices contain correct ids", () => {
         expect(game.choices).toEqual(['button1', 'button2', 'button3', 'button4']);
     });
+    test("turnNumber key exists", () => {
+        expect('turnNumber' in game).toBe(true);
+    });
  });
 
  describe('newGame works correctly', () => {
     //  we want to set up the game state with some fake values to see
     // if the newGame function resets them
-     beforeAll(() => {
-         game.score = 42;
-         game.playerMoves = ['button1', 'button2'];
-         game.currentGame = ['button1', 'button2'];
-         document.getElementById('score').innerText = '17';
-         newGame();
-     });
-     test('should set game score to zero', () => {
-         expect(game.score).toEqual(0);
-     })
-     test('should clear the playerMoves array', () => {
-         expect(game.playerMoves.length).toBe(0);
-     })
+    beforeAll(() => {
+        game.score = 42;
+        game.playerMoves = ['button1', 'button2'];
+        game.currentGame = ['button1', 'button2'];
+        document.getElementById('score').innerText = '17';
+        newGame();
+    });
+    test('should set game score to zero', () => {
+        expect(game.score).toEqual(0);
+    })
+    test('should clear the playerMoves array', () => {
+        expect(game.playerMoves.length).toBe(0);
+    })
     test("there should be one move in the computer's array", () => {
         expect(game.currentGame.length).toBe(1);
     })
     test('should display 0 for the element with id of score', () => {
         expect(document.getElementById('score').innerText).toEqual(0);
     });
+    test('expect data-listener to be true', () => {
+        newGame();
+        const elements = document.getElementsByClassName('circle');
+        for (let element of elements) {
+            expect(element.getAttribute('data-listener')).toEqual('true');
+        }
+    });
+
  });
 
 
