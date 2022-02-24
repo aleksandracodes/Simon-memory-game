@@ -2,8 +2,7 @@
  * @jest-environment jsdom
  */
 
-const { expect } = require('@jest/globals');
-const { game, newGame, showScore } = require('../game');
+const { game, newGame, showScore, addTurn } = require('../game');
  
  beforeAll(() => {
      let fs = require('fs');
@@ -47,9 +46,9 @@ const { game, newGame, showScore } = require('../game');
      test('should clear the playerMoves array', () => {
          expect(game.playerMoves.length).toBe(0);
      })
-     test('should clear currentGame array', () => {
-        expect(game.currentGame.length).toBe(0);
-    });
+    test("there should be one move in the computer's array", () => {
+        expect(game.currentGame.length).toBe(1);
+    })
     test('should display 0 for the element with id of score', () => {
         expect(document.getElementById('score').innerText).toEqual(0);
     });
