@@ -2,6 +2,8 @@
  * @jest-environment jsdom
  */
 
+// const { expect } = require('@jest/globals');
+// const { test } = require('picomatch');
 const { game, newGame } = require('../game');
  
  beforeAll(() => {
@@ -35,12 +37,17 @@ const { game, newGame } = require('../game');
     // if the newGame function resets them
      beforeAll(() => {
          game.score = 42;
+         game.playerMoves = ['button1', 'button2'];
+         game.currentGame = ['button1', 'button2'];
          newGame();
      });
+     test('should set game score to zero', () => {
+         expect(game.score).toEqual(0);
+     })
      test('should clear the playerMoves array', () => {
-         expect(game.playerMoves).toEqual([]);
+         expect(game.playerMoves.length).toBe(0);
      })
      test('should clear currentGame array', () => {
-        expect(game.currentGame).toEqual([]);
+        expect(game.currentGame.length).toBe(0);
     });
  });

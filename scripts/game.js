@@ -7,8 +7,8 @@ let game = {
 
 function newGame() {
     game.score = 0;
-    playerMoves = [];
-    currentGame = [];
+    game.playerMoves = [];
+    game.currentGame = [];
 }
 
 newGame();
