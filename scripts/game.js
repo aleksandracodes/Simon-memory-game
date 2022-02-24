@@ -1,25 +1,27 @@
 let game = {
-    score: 0,
     currentGame: [],
     playerMoves: [],
+    score: 0,
     turnNumber: 0,
     choices: ['button1', 'button2', 'button3', 'button4'],
-    turnInProgress: false,
     lastButton: '',
-}
+    turnInProgress: false,
+};
+
 
 function newGame() {
     game.score = 0;
-    game.playerMoves = [];
     game.currentGame = [];
-    for (let circle of document.getElementsByClassName('circle')){
+    game.playerMoves = [];
+
+    for (let circle of document.getElementsByClassName('circle')) {
         if (circle.getAttribute('data-listener') !== 'true') {
             circle.addEventListener('click', (e) => {
-                if (game.currentGame.length > 0 & !game.turnInProgress) {
+                if (game.currentGame.length > 0 && !game.turnInProgress) {
                     let move = e.target.getAttribute('id');
                     game.lastButton = move;
-                    lightsOn(move);
                     game.playerMoves.push(move);
+                    lightsOn(move);
                     playerTurn();
                 }
             });
@@ -34,7 +36,20 @@ function newGame() {
 function addTurn() {
     game.playerMoves = []; // start of the new turn
     game.currentGame.push(game.choices[(Math.floor(Math.random() * 4))]); // random selection of available choices and push to the computer sequence array
-    // showTurns(); // display the sequence
+    showTurns();
+}
+
+function showTurns() {
+    game.turnInProgress = true;
+    game.turnNumber = 0;
+    let turns = setInterval(function () {
+        lightsOn(game.currentGame[game.turnNumber]);
+        game.turnNumber++;
+        if (game.turnNumber >= game.currentGame.length) {
+            clearInterval(turns);
+            game.turnInProgress = false;
+        }
+    }, 800);
 }
 
 
@@ -50,19 +65,6 @@ function lightsOn(circ) {
     }, 400);
 }
 
-
-function showTurns() {
-    game.turnNumber = 0;
-    game.turnInProgress = true;
-    let turns = setInterval(() => {
-        lightsOn(game.currentGame[game.turnNumber]);
-        game.turnNumber++;
-        if (game.turnNumber >= game.currentGame.length) {
-            clearInterval(turns);
-            game.turnInProgress = false;
-        }
-    }, 800);
-}
 
 function playerTurn() {
     let i = game.playerMoves.length - 1;
